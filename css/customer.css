@@ -1,34 +1,40 @@
-/* Add this to the very top of customer.css */
+/* 1. Import Fonts (Same as Login/Signup) */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,500&display=swap');
+
+/* 2. Global Background & Fonts */
 body {
-    /* Replace 'your-animation.gif' with your actual file path */
-    background-image: url('../images/images1/my2.jpg'); 
-    background-size: cover;       /* Ensures image covers the whole screen */
-    background-repeat: no-repeat; /* Prevents tiling */
-    background-attachment: fixed; /* Keeps background still while scrolling */
+    background-image: url('../images/images1/my2.jpg'); /* Make sure this path is correct */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-position: center;
+    font-family: 'Playfair Display', serif; /* Default font */
+    color: #333;
 }
 
-/* Update your .container-fluid to be transparent so the background shows through */
-.container-fluid {
-    background-color: rgba(255, 255, 255, 0.9); /* 0.9 makes it slightly see-through */
-    /* background-color: white;  <-- Remove or comment out the solid white */
+/* 3. Top Navbar (Light Brown Contrast) */
+.navbar {
+    background-color: #DEB887 !important; /* BurlyWood (Light Brown) */
+    border-bottom: 2px solid #8B4513;     /* SaddleBrown border */
+    min-height: 8vh;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
+
+.navbar-brand, .nav-link {
+    color: #3e2723 !important; /* Dark Brown text for contrast on light bar */
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
 .navbar-nav {
-
     margin-right: 6rem;
 }
 
-.navbar {
-    min-height: 8vh;
-}
-
-.container-fluid {
-    background-color: white;
-    /* overflow-x: auto; */
-    /* margin-left: 200px; */
-}
-
+/* 4. Sidebar (Light Brown Contrast) */
 .sidebar {
+    background-color: rgba(222, 184, 135, 0.95); /* BurlyWood with slight transparency */
+    border-right: 2px solid #8B4513;
     min-height: 100vh;
     padding-top: 5rem;
     padding-left: 3rem;
@@ -36,123 +42,157 @@ body {
     position: fixed;
     z-index: 1;
     overflow-x: hidden;
+    width: 18%; /* Fixed width for better layout control */
 }
 
-.sidebar a:visited {
-    text-decoration: none;
+.sidebar a {
+    color: #3e2723 !important; /* Dark Brown Text */
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
 }
 
 .sidebar a:hover {
+    color: #000 !important;
+    text-shadow: 0px 0px 1px #8B4513;
+    transform: translateX(5px); /* Slide effect */
     text-decoration: none;
 }
 
+/* 5. Main Content Area (Centered & Transparent) */
 .content {
-    margin-top: 1rem;
+    margin-top: 2rem;
     position: relative;
-    left: 16%;
+    left: 20%;      /* Pushes it right of sidebar */
+    width: 75%;     /* Restricts width so it stays in middle */
+    padding-right: 2rem;
 }
 
+.container-fluid {
+    background-color: transparent !important; /* Remove white background */
+}
 
-/* customer/books.css */
+/* 6. Dashboard Stats / Cards (The "Book Info" Boxes) */
+/* This handles the "Total books borrowed" etc. */
+.list-group-item, .card, .alert-info {
+    /* THEME: Deep Mahogany/Brown Glass */
+    background-color: rgba(61, 30, 20, 0.85) !important; 
+    color: white !important;
+    border: 1px solid #ffebcd; /* Gold Border */
+    border-radius: 15px !important;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4); /* 3D Shadow */
+    font-size: 1.2rem;
+}
 
+/* Headers inside the page (Like "Home", "Profile") */
+h1, h2, h3 {
+    font-family: 'Dancing Script', cursive;
+    color: #ffebcd; /* Gold */
+    text-shadow: 2px 2px 4px black;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 3.5rem;
+}
+
+/* =========================================
+   SPECIFIC FORM STYLES (Profile, Books, etc)
+   Converting all Blue/Grey forms to Brown Theme
+   ========================================= */
+
+/* Common Style for ALL Forms/Content Boxes */
+.profile-content, 
+.books-content, 
+.change-password, 
+.modify-customer, 
+.request-books {
+    /* THEME: Deep Mahogany Brown */
+    background-color: rgba(61, 30, 20, 0.9) !important;
+    color: white !important;
+    
+    /* Centering & Shape */
+    float: none;       /* Remove float to center easily */
+    margin: 2rem auto; /* Auto margins centers it horizontally */
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    padding: 2rem;
+    border: 1px solid #8B4513;
+}
+
+/* Specific Dimensions adjustments */
+.profile-content { height: auto; max-width: 800px; }
+.books-content   { height: auto; max-width: 900px; }
+.change-password { height: auto; max-width: 600px; margin-top: 5rem; }
+.modify-customer { height: auto; max-width: 800px; }
+.request-books   { height: auto; max-width: 800px; margin-top: 3rem; }
+
+/* Links inside forms */
+.profile-content a, .books-content a {
+    color: #ffebcd;
+    text-decoration: underline;
+}
+.profile-content a:hover, .books-content a:hover {
+    color: white;
+}
+
+/* 7. Buttons (BLACK THEME) */
+.btn-primary, .btn, button {
+    background-color: #000000 !important;  /* Pure Black */
+    color: white !important;
+    border: 1px solid white !important;
+    padding: 10px 30px;
+    font-family: 'Playfair Display', serif;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    margin: 10px;
+}
+
+.btn-primary:hover, .btn:hover, button:hover {
+    background-color: #333333 !important;
+    border-color: #ffebcd !important;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* 8. Inputs (Clean White) */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    height: 3rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+/* Labels */
+label {
+    font-size: 1.2rem;
+    color: #ffebcd; /* Gold labels */
+    margin-bottom: 0.5rem;
+}
+
+/* 9. Miscellaneous Helper Classes */
 .dropbar {
     margin-right: 7rem;
 }
 
 .search-bar {
     margin-top: 2rem;
-}
-
-
-/* customer/profile.css */
-
-.profile-content {
-    /* background-color: #343A40; */
-    background-color: #CCE5FF;
-    height: 35rem;
-    margin-left: 2rem;
-    float: left;
-    /* opacity: 0.5; */
-    color: black;
-    padding-top: 2rem;
     text-align: center;
-}
-
-.profile-content a:visited {
-    text-decoration: none;
-}
-
-.profile-content a:hover {
-    text-decoration: none;
 }
 
 .profile-pic {
-    width: 25rem;
-    padding-left: 2rem;
-}
-
-
-/* customer/books/add.css */
-
-.books-content {
-    /* background-color: #343A40; */
-    background-color: #CCE5FF;
-    height: 46rem;
-    margin-left: 2rem;
-    float: left;
-    /* opacity: 0.5; */
-    color: black;
-    padding-top: 2rem;
-    text-align: center;
-}
-
-/* customer/changepass.css */
-
-.change-password {
-    /* background-color: #343A40; */
-    background-color: #CCE5FF;
-    height: 25rem;
-    margin-left: 2rem;
-    margin-top: 5rem;
-    float: left;
-    /* opacity: 0.5; */
-    color: black;
-    padding-top: 2rem;
-    text-align: center;
-}
-
-/* customer/customers/add.css */
-
-.modify-customer {
-    /* background-color: #343A40; */
-    background-color: #CCE5FF;
-    height: 42rem;
-    margin-left: 2rem;
-    float: left;
-    /* opacity: 0.5; */
-    color: black;
-    padding-top: 2rem;
-    text-align: center;
+    width: 20rem;
+    border-radius: 50%; /* Circle profile pic */
+    border: 5px solid #ffebcd;
+    margin-bottom: 2rem;
 }
 
 .gender {
-    width: 20rem;
+    width: 100%;
+    max-width: 20rem;
     margin: auto;
 }
-
-
-/* customer/books/request.css */
-
-.request-books {
-    /* background-color: #343A40; */
-    background-color: #CCE5FF;
-    height: 40rem;
-    margin-left: 2rem;
-    float: left;
-    /* opacity: 0.5; */
-    color: black;
-    padding-top: 2rem;
-    text-align: center;
-    margin-top: 3rem;
-}
-
