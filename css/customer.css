@@ -3,7 +3,8 @@
 
 /* 2. Global Background & Settings */
 body {
-    background-image: url('../images/images1/customer.jpg');
+    /* Use the same background image as your login page */
+    background-image: url('../images/images1/my2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -12,16 +13,16 @@ body {
     color: #333;
 }
 
-/* 3. Top Navbar (LIGHT BROWN) */
+/* 3. Top Navbar (Light Brown) */
 .navbar {
-    background-color: #DEB887 !important; /* BurlyWood - Light Brown */
-    border-bottom: 2px solid #8B4513;     /* SaddleBrown Border */
+    background-color: #DEB887 !important; /* BurlyWood */
+    border-bottom: 2px solid #8B4513;     /* SaddleBrown */
     min-height: 8vh;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 .navbar-brand, .nav-link {
-    color: #3e2723 !important; /* Dark Brown Text for Contrast */
+    color: #3e2723 !important; /* Dark Brown Text */
     font-family: 'Dancing Script', cursive;
     font-size: 1.6rem;
     font-weight: bold;
@@ -31,9 +32,9 @@ body {
     margin-right: 6rem;
 }
 
-/* 4. Sidebar / Left Pane (MATCHING LIGHT BROWN) */
+/* 4. Sidebar (Matching Light Brown) */
 .sidebar {
-    background-color: #DEB887 !important; /* EXACT match to Navbar */
+    background-color: #DEB887 !important;
     border-right: 2px solid #8B4513;
     min-height: 100vh;
     padding-top: 5rem;
@@ -45,9 +46,8 @@ body {
     width: 18%; 
 }
 
-/* Sidebar Links (Dark Text to be visible on Light Sidebar) */
 .sidebar a {
-    color: #3e2723 !important; /* Dark Brown */
+    color: #3e2723 !important;
     font-family: 'Playfair Display', serif;
     font-weight: 600;
     display: block;
@@ -56,7 +56,7 @@ body {
 }
 
 .sidebar a:hover {
-    color: #000 !important; /* Black on hover */
+    color: #000 !important;
     text-shadow: 0px 0px 1px #8B4513;
     transform: translateX(5px);
     text-decoration: none;
@@ -75,57 +75,86 @@ body {
     background-color: transparent !important;
 }
 
-/* 6. HEADINGS (FORCED LIGHT COLOR) */
-/* This fixes the visibility issue. All titles will be Gold/Cream. */
-h1, h2, h3, h4, h5 {
-    font-family: 'Dancing Script', cursive;
-    color: #ffebcd !important;  /* BlanchedAlmond (Light Gold) */
-    text-shadow: 2px 2px 4px #000; /* Black shadow ensures visibility anywhere */
+/* ======================================================
+   6. FIX FOR HEADINGS ("Home", etc.)
+   ====================================================== */
+/* We use !important to overwrite any Bootstrap defaults */
+h1, h2, h3, h4, h5, .header {
+    font-family: 'Dancing Script', cursive !important;
+    color: #ffebcd !important;  /* Blanched Almond (Gold/Cream) */
+    text-shadow: 3px 3px 0px #000000 !important; /* Hard Black shadow for visibility */
     text-align: center;
-    margin-bottom: 1.5rem;
-    font-weight: bold;
+    margin-bottom: 2rem;
+    font-weight: 700 !important;
+    font-size: 4rem !important; /* Made it bigger */
 }
 
-/* 7. Forms & Content Boxes (Deep Mahogany Dark Theme) */
-.list-group-item, .card, .alert-info,
+/* ======================================================
+   7. BEAUTIFUL STATS TABLE (The Ledger Look)
+   ====================================================== */
+/* Transforms the list-group or alert bars into a 
+   Vintage Ledger Table style 
+*/
+.list-group-item, .alert-info, .card {
+    /* Deep Mahogany Background */
+    background-color: rgba(61, 30, 20, 0.95) !important; 
+    
+    /* Text Color */
+    color: #fff !important;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    
+    /* Borders & Spacing to look like a table */
+    border: 1px solid #8B4513 !important; /* Brown border */
+    border-bottom: 1px solid #ffebcd !important; /* Gold bottom line */
+    border-radius: 0 !important; /* Sharp corners like a book */
+    
+    margin-bottom: 0 !important; /* Connect them together */
+    padding: 1.5rem 2rem;
+    
+    display: flex;
+    justify-content: space-between; /* Pushes text to left, number to right */
+    align-items: center;
+}
+
+/* Add rounded corners only to the top and bottom items */
+.list-group-item:first-child, .alert-info:first-of-type {
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    border-top: 2px solid #ffebcd !important; /* Gold Top Border */
+}
+
+.list-group-item:last-child, .alert-info:last-of-type {
+    border-bottom-left-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
+    border-bottom: 2px solid #ffebcd !important; /* Gold Bottom Border */
+}
+
+/* Hover effect for the "Table Rows" */
+.list-group-item:hover, .alert-info:hover {
+    background-color: rgba(80, 40, 30, 1) !important;
+    padding-left: 2.5rem; /* Slight slide effect */
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+/* ======================================================
+   8. FORMS (Profile, Books, etc.) - BROWN THEME
+   ====================================================== */
 .profile-content, 
 .books-content, 
 .change-password, 
 .modify-customer, 
 .request-books {
-    /* Background: Dark Brown Glass */
     background-color: rgba(61, 30, 20, 0.9) !important;
-    
-    /* Text Color: White */
     color: white !important;
-    
-    /* Borders & Spacing */
     border: 1px solid #ffebcd;
     border-radius: 20px !important;
-    margin-bottom: 1.5rem;
+    margin: 2rem auto;
     padding: 2rem;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-    
-    /* Centering Fixes */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
     float: none;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Specific Sizes */
-.profile-content { height: auto; max-width: 800px; }
-.books-content   { height: auto; max-width: 900px; }
-.change-password { height: auto; max-width: 600px; margin-top: 5rem; }
-.modify-customer { height: auto; max-width: 800px; }
-.request-books   { height: auto; max-width: 800px; margin-top: 3rem; }
-
-/* 8. Links inside Forms (Light Color) */
-.profile-content a, .books-content a {
-    color: #ffebcd;
-    text-decoration: underline;
-}
-.profile-content a:hover, .books-content a:hover {
-    color: white;
+    max-width: 800px;
 }
 
 /* 9. Buttons (Black Theme) */
@@ -137,7 +166,7 @@ h1, h2, h3, h4, h5 {
     font-family: 'Playfair Display', serif;
     border-radius: 30px;
     transition: all 0.3s ease;
-    margin: 10px;
+    margin-top: 10px;
 }
 
 .btn-primary:hover, .btn:hover, button:hover {
@@ -154,20 +183,19 @@ h1, h2, h3, h4, h5 {
     height: 3rem;
     border-radius: 5px;
     margin-bottom: 1rem;
-    font-size: 1.1rem;
 }
 
 label {
     font-size: 1.2rem;
-    color: #ffebcd !important; /* Light Gold Labels */
+    color: #ffebcd !important;
     margin-bottom: 0.5rem;
-    display: block; /* Ensures labels sit above inputs */
+    display: block;
 }
 
-/* 11. Profile Picture Fix */
+/* 11. Profile Pic */
 .profile-pic {
     display: block;
-    margin: 0 auto 2rem auto; /* Centers the image */
+    margin: 0 auto 2rem auto;
     width: 15rem;
     height: 15rem;
     object-fit: cover;
@@ -175,13 +203,6 @@ label {
     border: 4px solid #ffebcd;
 }
 
-.gender {
-    width: 100%;
-    max-width: 20rem;
-    margin: auto;
-}
-
-.search-bar {
-    text-align: center;
-    margin-top: 2rem;
-}
+/* Helper Classes */
+.gender { width: 100%; max-width: 20rem; margin: auto; }
+.search-bar { text-align: center; margin-top: 2rem; }
