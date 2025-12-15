@@ -1,6 +1,20 @@
-/* customer/home.css */
+/* Add this to the very top of customer.css */
+body {
+    /* Replace 'your-animation.gif' with your actual file path */
+    background-image: url('../images/images1/hi.gif'); 
+    background-size: cover;       /* Ensures image covers the whole screen */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-attachment: fixed; /* Keeps background still while scrolling */
+    background-position: center;
+}
 
+/* Update your .container-fluid to be transparent so the background shows through */
+.container-fluid {
+    background-color: rgba(255, 255, 255, 0.9); /* 0.9 makes it slightly see-through */
+    /* background-color: white;  <-- Remove or comment out the solid white */
+}
 .navbar-nav {
+
     margin-right: 6rem;
 }
 
@@ -141,3 +155,4 @@
     text-align: center;
     margin-top: 3rem;
 }
+
