@@ -3,8 +3,8 @@
 
 /* 2. Global Background & Settings */
 body {
-    /* Use the same background image as your login page */
-    background-image: url('../images/images1/my2.jpg');
+    /* Ensure this file name matches exactly what is in your public/images/images1 folder */
+    background-image: url('../images/images1/customer.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -16,7 +16,7 @@ body {
 /* 3. Top Navbar (Light Brown) */
 .navbar {
     background-color: #DEB887 !important; /* BurlyWood */
-    border-bottom: 2px solid #8B4513;     /* SaddleBrown */
+    border-bottom: 2px solid #8B4513 !important;     /* SaddleBrown */
     min-height: 8vh;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
@@ -35,7 +35,7 @@ body {
 /* 4. Sidebar (Matching Light Brown) */
 .sidebar {
     background-color: #DEB887 !important;
-    border-right: 2px solid #8B4513;
+    border-right: 2px solid #8B4513 !important;
     min-height: 100vh;
     padding-top: 5rem;
     padding-left: 3rem;
@@ -76,70 +76,56 @@ body {
 }
 
 /* ======================================================
-   6. FIX FOR HEADINGS ("Home", etc.)
+   6. FIX FOR HEADINGS (The "Home" Text Issue)
    ====================================================== */
-/* We use !important to overwrite any Bootstrap defaults */
+/* We use !important to force the Gold color over default Black */
 h1, h2, h3, h4, h5, .header {
     font-family: 'Dancing Script', cursive !important;
     color: #ffebcd !important;  /* Blanched Almond (Gold/Cream) */
-    text-shadow: 3px 3px 0px #000000 !important; /* Hard Black shadow for visibility */
+    text-shadow: 3px 3px 0px #000000 !important; /* Hard Black shadow makes it visible */
     text-align: center;
     margin-bottom: 2rem;
     font-weight: 700 !important;
-    font-size: 4rem !important; /* Made it bigger */
+    font-size: 4rem !important; 
 }
 
 /* ======================================================
-   7. BEAUTIFUL STATS TABLE (The Ledger Look)
+   7. FIX FOR STATS BARS (The Blue Bar Issue)
    ====================================================== */
-/* Transforms the list-group or alert bars into a 
-   Vintage Ledger Table style 
-*/
-.list-group-item, .alert-info, .card {
-    /* Deep Mahogany Background */
+/* This forces the blue Bootstrap bars to become Dark Brown/Vintage */
+.list-group-item, .alert, .alert-info, .card {
+    /* Force Dark Mahogany Background */
     background-color: rgba(61, 30, 20, 0.95) !important; 
     
-    /* Text Color */
+    /* Force White Text */
     color: #fff !important;
     font-family: 'Playfair Display', serif;
     font-size: 1.3rem;
     
-    /* Borders & Spacing to look like a table */
-    border: 1px solid #8B4513 !important; /* Brown border */
-    border-bottom: 1px solid #ffebcd !important; /* Gold bottom line */
-    border-radius: 0 !important; /* Sharp corners like a book */
+    /* Borders & Spacing */
+    border: 1px solid #8B4513 !important;
+    border-bottom: 1px solid #ffebcd !important; /* Gold divider line */
+    border-radius: 0 !important;
     
-    margin-bottom: 0 !important; /* Connect them together */
+    margin-bottom: 0 !important;
     padding: 1.5rem 2rem;
-    
-    display: flex;
-    justify-content: space-between; /* Pushes text to left, number to right */
-    align-items: center;
 }
 
-/* Add rounded corners only to the top and bottom items */
+/* Add nice rounded corners to the top and bottom of the list */
 .list-group-item:first-child, .alert-info:first-of-type {
     border-top-left-radius: 15px !important;
     border-top-right-radius: 15px !important;
-    border-top: 2px solid #ffebcd !important; /* Gold Top Border */
+    border-top: 2px solid #ffebcd !important;
 }
 
 .list-group-item:last-child, .alert-info:last-of-type {
     border-bottom-left-radius: 15px !important;
     border-bottom-right-radius: 15px !important;
-    border-bottom: 2px solid #ffebcd !important; /* Gold Bottom Border */
-}
-
-/* Hover effect for the "Table Rows" */
-.list-group-item:hover, .alert-info:hover {
-    background-color: rgba(80, 40, 30, 1) !important;
-    padding-left: 2.5rem; /* Slight slide effect */
-    transition: all 0.3s ease;
-    cursor: default;
+    border-bottom: 2px solid #ffebcd !important;
 }
 
 /* ======================================================
-   8. FORMS (Profile, Books, etc.) - BROWN THEME
+   8. FORMS (Profile, Books, etc.)
    ====================================================== */
 .profile-content, 
 .books-content, 
