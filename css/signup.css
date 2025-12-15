@@ -1,3 +1,7 @@
+/* 1. Import Fancy Fonts (Cursive for Header, Clean Serif for Labels) */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,500&display=swap');
+
+/* 2. Full Screen Background */
 .bg-image {
     background-image: url('../images/images1/my1.jpg');
     min-height: 100vh;
@@ -8,20 +12,77 @@
     background-attachment: fixed;
 }
 
+/* 3. The Login Box (Brown/Mahogany Theme) */
 .signup-form {
-    background-color: rgba(151, 174, 189, 0.7);
+    /* Deep Brown with transparency */
+    background-color: rgba(61, 30, 20, 0.85); 
+    
+    /* Box Shape & Position */
     min-height: 43rem;
     min-width: 20rem;
     margin: 3rem auto;
-    /* text-align: center; */
+    border-radius: 15px;
+    padding: 2.5rem;
+    
+    /* 3D Shadow */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    
+    /* Default Text Color */
+    color: white; 
 }
 
+/* 4. The Header (Cursive & Elegant) */
 .header {
     text-align: center;
-    color: black;
-    text-shadow: 2px 2px 5px white;
+    color: #ffebcd; /* Blanched Almond (Gold/Cream color) */
+    
+    /* Font Settings */
+    font-family: 'Dancing Script', cursive; 
+    font-size: 4rem;   
+    font-weight: 700;
+    
+    /* Text Shadow */
+    text-shadow: 3px 3px 6px #000000;
+    margin-bottom: 2rem;
+}
+
+/* 5. Labels (Email, Password) */
+.signup-form label {
+    color: white;
+    font-family: 'Playfair Display', serif; 
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+}
+
+/* 6. Inputs (Clean & White) */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    height: 3rem;
+    font-size: 1.1rem;
+}
+
+/* 7. Buttons (BLACK THEME) */
+.btn-primary, .btn, button {
+    background-color: #000000;  /* Pure Black */
+    color: white;
+    border: 1px solid white;    /* White border to make it pop */
+    padding: 10px 40px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    border-radius: 30px;        /* Rounded pill shape */
+    transition: all 0.3s ease;
+}
+
+/* Button Hover Effect */
+.btn-primary:hover, .btn:hover, button:hover {
+    background-color: #333333;  /* Dark Grey on hover */
+    border-color: #ffebcd;      /* Gold border on hover */
+    transform: translateY(-2px);/* Moves up slightly */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
 .submit-button {
     text-align: center;
+    margin-top: 3rem;
 }
