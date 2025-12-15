@@ -1,7 +1,7 @@
 /* 1. Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,500&display=swap');
 
-/* 2. Global Background */
+/* 2. Global Background & Settings */
 body {
     background-image: url('../images/images1/customer.jpg');
     background-size: cover;
@@ -12,22 +12,56 @@ body {
     color: #333;
 }
 
-/* 3. Navbar & Sidebar (Light Brown) */
-.navbar, .sidebar {
-    background-color: #DEB887 !important; /* Light BurlyWood */
-    border-color: #8B4513 !important;     /* SaddleBrown Border */
+/* 3. Top Navbar (Light Brown) */
+.navbar {
+    background-color: #DEB887 !important; /* BurlyWood */
+    border-bottom: 2px solid #8B4513 !important;     /* SaddleBrown */
+    min-height: 8vh;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-/* Sidebar Links */
-.sidebar a {
-    color: #3e2723 !important; /* Dark Brown */
-    font-weight: 600;
+.navbar-brand, .nav-link {
+    color: #3e2723 !important; /* Dark Brown Text */
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    font-weight: bold;
 }
+
+.navbar-nav {
+    margin-right: 6rem;
+}
+
+/* 4. Sidebar (Matching Light Brown) */
+.sidebar {
+    background-color: #DEB887 !important;
+    border-right: 2px solid #8B4513 !important;
+    min-height: 100vh;
+    padding-top: 5rem;
+    padding-left: 3rem;
+    font-size: 1.3rem;
+    position: fixed;
+    z-index: 1;
+    overflow-x: hidden;
+    width: 18%; 
+}
+
+.sidebar a {
+    color: #3e2723 !important;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
 .sidebar a:hover {
     color: #000 !important;
+    text-shadow: 0px 0px 1px #8B4513;
     transform: translateX(5px);
+    text-decoration: none;
 }
 
+/* 5. Main Content Area */
 .content {
     margin-top: 2rem;
     position: relative;
@@ -41,73 +75,79 @@ body {
 }
 
 /* ======================================================
-   4. THE HEADING FIX (Highlight Strategy)
+   6. FIX FOR HEADINGS (Highlighter Added)
    ====================================================== */
-/* This adds a dark box BEHIND the text so "Home" is always visible */
-h1, h2, h3, .header {
+h1, h2, h3, h4, h5, .header {
     font-family: 'Dancing Script', cursive !important;
     color: #ffebcd !important;  /* Gold Text */
+    text-shadow: 2px 2px 0px #000000 !important;
     
-    /* THE HIGHLIGHT: Semi-transparent black box behind text */
-    background-color: rgba(0, 0, 0, 0.6); 
-    display: inline-block;      /* Wraps the box only around the text */
-    padding: 10px 30px;         /* Spacing inside the box */
-    border-radius: 50px;        /* Rounded edges */
-    border: 1px solid #ffebcd;  /* Gold Border around the box */
+    /* THE HIGHLIGHTER EFFECT */
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black box */
+    display: inline-block;      /* Wraps the box around the text only */
+    padding: 10px 40px;         /* Adds space inside the highlighter */
+    border-radius: 50px;        /* Smooth rounded edges */
+    border: 1px solid #ffebcd;  /* Gold border around the highlighter */
     
     text-align: center;
     margin-bottom: 2rem;
     font-weight: 700 !important;
-    font-size: 3.5rem !important;
+    font-size: 4rem !important; 
     
-    /* Center the heading box on the page */
+    /* Center the heading on the page */
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+    width: auto;
 }
 
 /* ======================================================
-   5. THE FORMS & SEARCH BARS (Light Brown Theme)
+   7. STATS BARS (Dark Vintage Theme)
    ====================================================== */
-/* This targets the White Bars in your screenshot (Search & Table Header) */
-.list-group-item, .card, .alert, .alert-info, 
-.profile-content, .books-content, .modify-customer, 
-.table-header, .row {
-    /* FORCE LIGHT BROWN BACKGROUND (Matches Navbar) */
-    background-color: #DEB887 !important; 
-    
-    /* FORCE DARK TEXT (So it is readable on light brown) */
-    color: #3e2723 !important; 
-    
-    /* Dark Brown Borders */
-    border: 2px solid #8B4513 !important;
-    border-radius: 15px !important;
-    
-    margin-bottom: 1.5rem;
-    padding: 1.5rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-/* Fix for the Table Header Row explicitly (ID, Genre, Title...) */
-/* Assuming it might use specific bootstrap classes */
-.row, .col, .d-flex {
-    /* If there are nested divs causing white backgrounds, this transparent fix helps */
-    background-color: inherit; 
-}
-
-/* ======================================================
-   6. INPUTS (The "By..." and "Search" boxes)
-   ====================================================== */
-.form-control, select {
-    background-color: rgba(255, 255, 255, 0.6) !important; /* Semi-transparent white */
-    border: 1px solid #8B4513 !important;
-    color: #000 !important;
+.list-group-item, .alert, .alert-info, .card {
+    background-color: rgba(61, 30, 20, 0.95) !important; 
+    color: #fff !important;
     font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    border: 1px solid #8B4513 !important;
+    border-bottom: 1px solid #ffebcd !important;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 1.5rem 2rem;
+}
+
+.list-group-item:first-child, .alert-info:first-of-type {
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    border-top: 2px solid #ffebcd !important;
+}
+
+.list-group-item:last-child, .alert-info:last-of-type {
+    border-bottom-left-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
+    border-bottom: 2px solid #ffebcd !important;
 }
 
 /* ======================================================
-   7. BUTTONS (Black Theme)
+   8. FORMS (Profile, Books, etc.)
    ====================================================== */
+.profile-content, 
+.books-content, 
+.change-password, 
+.modify-customer, 
+.request-books {
+    background-color: rgba(61, 30, 20, 0.9) !important;
+    color: white !important;
+    border: 1px solid #ffebcd;
+    border-radius: 20px !important;
+    margin: 2rem auto;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    float: none;
+    max-width: 800px;
+}
+
+/* 9. Buttons (Black Theme) */
 .btn-primary, .btn, button {
     background-color: #000000 !important;
     color: white !important;
@@ -116,15 +156,33 @@ h1, h2, h3, .header {
     font-family: 'Playfair Display', serif;
     border-radius: 30px;
     transition: all 0.3s ease;
+    margin-top: 10px;
 }
 
 .btn-primary:hover, .btn:hover, button:hover {
     background-color: #333333 !important;
-    border-color: #DEB887 !important;
+    border-color: #ffebcd !important;
     transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
-/* Helper Classes */
+/* 10. Inputs & Labels */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: none;
+    height: 3rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+label {
+    font-size: 1.2rem;
+    color: #ffebcd !important;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* 11. Profile Pic */
 .profile-pic {
     display: block;
     margin: 0 auto 2rem auto;
@@ -132,7 +190,9 @@ h1, h2, h3, .header {
     height: 15rem;
     object-fit: cover;
     border-radius: 50%;
-    border: 4px solid #DEB887;
+    border: 4px solid #ffebcd;
 }
 
+/* Helper Classes */
+.gender { width: 100%; max-width: 20rem; margin: auto; }
 .search-bar { text-align: center; margin-top: 2rem; }
