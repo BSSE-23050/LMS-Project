@@ -6,52 +6,42 @@ var validationRules = require.main.require('./validation_rules/rules');
 var asyncValidator = require('async-validator-2');
 
 router.get('/home', (req, res)=> {
-    // var users = "";
     userModel.getAll((users)=> {
-        if(!users){
-            res.send("Invalid");
-        }
-        else {
-            bookModel.getAll((books)=> {
-                if(!books){
-                    res.send("Invalid");
-                }
-                else {
-                    bookModel.getAllBorrowedBooks((borrowed)=> {
-                        if(!borrowed){
-                            res.send("invalid");
-                        }
-                        else {
-                            bookModel.totalBorrowed30((mostBorrowed)=> {
-                                if(!mostBorrowed){
-                                    res.send("not valid");
-                                }
-                                else {
-                                    bookModel.mostRequestedBook((mostRequested)=> {
-                                        if(!mostRequested){
-                                            res.render("nothing here");
-                                        }
-                                        else {
-                                            bookModel.mostBorrowedBook((mostBorrowedBook)=> {
-                                                if(!mostBorrowedBook){
-                                                    res.send("no borrowed books");
-                                                }
-                                                else {
-                                                    res.render('admin/home', {usr: users.length, bk: books.length, brwd: borrowed.length, mb: mostBorrowed.length, mrb: mostRequested, mbb: mostBorrowedBook});
-                                                }
-                                            });
-                                        }
-                                    });
-                                }
+        // Safe check: if users is null, make it an empty array
+        if (!users) users = []; 
+        
+        bookModel.getAll((books)=> {
+            if (!books) books = [];
+
+            bookModel.getAllBorrowedBooks((borrowed)=> {
+                if (!borrowed) borrowed = [];
+
+                bookModel.totalBorrowed30((mostBorrowed)=> {
+                    if (!mostBorrowed) mostBorrowed = [];
+
+                    bookModel.mostRequestedBook((mostRequested)=> {
+                        // FIX STARTS HERE: Even if mostRequested is null, we must define the other variables
+                        // We use a helper variable 'mrb_data' to avoid passing null if the view expects an object
+                        var mrb_data = mostRequested ? mostRequested : null;
+
+                        bookModel.mostBorrowedBook((mostBorrowedBook)=> {
+                            var mbb_data = mostBorrowedBook ? mostBorrowedBook : null;
+
+                            // NOW WE RENDER WITH ALL VARIABLES DEFINED
+                            res.render('admin/home', {
+                                usr: users.length, 
+                                bk: books.length, 
+                                brwd: borrowed.length, 
+                                mb: mostBorrowed.length, 
+                                mrb: mrb_data, 
+                                mbb: mbb_data 
                             });
-                        }
+                        });
                     });
-                }
+                });
             });
-        }
+        });
     });
-
-
 });
 
 router.get('/profile', (req, res)=> {

@@ -8,12 +8,14 @@ var validateUser = (email, password, callback) => {
 };
 
 var createUser = (user, callback) => {
-    var sql = "INSERT INTO users VALUES(null, ?, ?, ?, ?, ?, ?, ?)";
+    // 1. SPECIFY THE COLUMN NAMES EXPLICITLY
+    var sql = "INSERT INTO users (name, phone, email, role, password, address, gender) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    
+    // 2. PASS THE VARIABLES
     db.executeQuery(sql, [user.name, user.phone, user.email, 0, user.password, user.address, user.gender], function(result) {
         callback(result);
     });
 };
-
 var getUser = (id, callback) => {
     var sql = "SELECT * FROM users WHERE user_id=?";
     db.executeQuery(sql, [id], function(result) {

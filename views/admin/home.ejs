@@ -11,24 +11,45 @@
                 <%-include('partials/sidebar.html')%>
                 <div class="col-md-10 content">
                     <p class="display-2">Quick Inventory</p>
+                    
                     <div class="alert alert-primary" role="alert">
                         Total Books: <span style="float: right;"><%=bk%></span>
                     </div>
+                    
                     <div class="alert alert-primary" role="alert">
                         Total Members: <span style="float: right;"><%=usr%></span>
                     </div>
+                    
                     <div class="alert alert-primary" role="alert">
                         Total books borrowed: <span style="float: right;"><%=brwd%></span>
                     </div>
+                    
                     <div class="alert alert-primary" role="alert">
                         Total borrowed books in last 30 days: <span style="float: right;"><%=mb%></span>
                     </div>
+                    
                     <div class="alert alert-primary" role="alert">
-                        Most borrowed book in last 30 days: <span style="float: right;"><%=mbb.title%> by <%=mbb.author%> | Total: <%=mbb.magnitude%> times</span>
+                        Most borrowed book in last 30 days: 
+                        <span style="float: right;">
+                            <% if(mbb) { %> 
+                                <%=mbb.title%> by <%=mbb.author%> | Total: <%=mbb.magnitude%> times
+                            <% } else { %>
+                                N/A (No data yet)
+                            <% } %>
+                        </span>
                     </div>
+                    
                     <div class="alert alert-primary" role="alert">
-                        Most requested book: <span style="float: right;"><%=mrb.title%> by <%=mrb.author%> | Total: <%=mrb.magnitude%> times</span>
+                        Most requested book: 
+                        <span style="float: right;">
+                            <% if(mrb) { %> 
+                                <%=mrb.title%> by <%=mrb.author%> | Total: <%=mrb.magnitude%> times
+                            <% } else { %>
+                                N/A (No data yet)
+                            <% } %>
+                        </span>
                     </div>
+                    
                 </div>
             </div>
         </div>

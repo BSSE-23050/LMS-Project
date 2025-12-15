@@ -3,7 +3,7 @@ var express = require('express');
 var expressSession = require('express-session');
 var bodyParser = require('body-parser');
 var app = express();
-var port = 3000;
+var port = 8080;
 
 //common controllers
 var signup = require('./controllers/signup');

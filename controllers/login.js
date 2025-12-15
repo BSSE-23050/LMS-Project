@@ -26,7 +26,7 @@ router.post('/', (req, res)=>{
                 }
                 else{
                   console.log(result);
-                  if(result.is_admin == 1){
+                  if(result.role == 1){
                       req.session.admin = result.user_id;
                       res.redirect('/admin/home');
                   }
