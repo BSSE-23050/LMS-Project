@@ -3,8 +3,7 @@
 
 /* 2. Global Background & Settings */
 body {
-    /* Make sure this points to your library image */
-    background-image: url('../images/images1/customer.jpg');
+    background-image: url('../images/images1/my1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -16,7 +15,7 @@ body {
 /* 3. Top Navbar (Light Brown) */
 .navbar {
     background-color: #DEB887 !important; /* BurlyWood */
-    border-bottom: 2px solid #8B4513 !important;     /* SaddleBrown */
+    border-bottom: 2px solid #8B4513 !important;
     min-height: 8vh;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
@@ -46,7 +45,6 @@ body {
     width: 18%; 
 }
 
-/* Sidebar Links */
 .sidebar a {
     color: #3e2723 !important;
     font-family: 'Playfair Display', serif;
@@ -104,16 +102,53 @@ h1, h2, h3, h4, h5, .header {
 }
 
 /* ======================================================
-   7. ADMIN FORMS (Light Brown Theme)
+   7. ADMIN STATS BARS (Dark Mahogany Theme)
    ====================================================== */
-/* Applying the Light Brown background + Dark Text style */
+/* Targetting .list-group-item and .card for stats like 'Total Books', 'Total Members' */
+.list-group-item, .alert, .alert-info, .card {
+    /* Force Dark Mahogany Background */
+    background-color: rgba(61, 30, 20, 0.95) !important; 
+    
+    /* Force White Text */
+    color: #fff !important;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    
+    /* Borders & Spacing to look like a ledger */
+    border: 1px solid #8B4513 !important;
+    border-bottom: 1px solid #ffebcd !important; 
+    border-radius: 0 !important;
+    
+    margin-bottom: 0 !important;
+    padding: 1.5rem 2rem;
+}
+
+/* Rounded corners for the start/end of the list */
+.list-group-item:first-child, .alert-info:first-of-type, .card:first-of-type {
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    border-top: 2px solid #ffebcd !important;
+}
+
+.list-group-item:last-child, .alert-info:last-of-type, .card:last-of-type {
+    border-bottom-left-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
+    border-bottom: 2px solid #ffebcd !important;
+    margin-bottom: 1.5rem !important; /* Add space below the final item */
+}
+
+
+/* ======================================================
+   8. ADMIN FORMS & TABLES (Light Brown Theme)
+   ====================================================== */
+/* Targetting forms like modify-customer, books-content, and the table headers/rows */
 .profile-content, 
 .books-content, 
 .change-password, 
 .modify-customer,
-.card, .list-group-item {
+.table thead, .table tbody tr {
     background-color: #DEB887 !important; /* Light Brown */
-    color: #3e2723 !important;            /* Dark Text */
+    color: #3e2723 !important;            /* Dark Text for readability */
     
     border: 2px solid #8B4513 !important;
     border-radius: 20px !important;
@@ -121,52 +156,36 @@ h1, h2, h3, h4, h5, .header {
     padding: 2rem;
     box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     
-    /* Fix layout issues (removing float) */
+    /* Fix layout issues */
     float: none;
     max-width: 900px;
-    height: auto !important; /* Allow height to grow */
+    height: auto !important;
 }
 
-/* Specific separator lines in profile */
-.profile-content hr {
-    background-color: #8B4513 !important; /* Brown line instead of grey */
-    opacity: 1;
-}
-
-/* Links inside forms */
-.profile-content a, .books-content a {
-    color: #000;
-    text-decoration: underline;
+/* Table Header (ensuring it stays light brown with dark text) */
+.table thead th {
+    background-color: #DEB887 !important;
+    color: #3e2723 !important;
     font-weight: bold;
-}
-.profile-content a:hover {
-    color: #fff;
+    font-size: 1.2rem;
 }
 
-/* ======================================================
-   8. INPUTS & SEARCH BARS
-   ====================================================== */
+/* 9. INPUTS & LABELS (Dark Text on Light Background) */
 .form-control, select {
     background-color: rgba(255, 255, 255, 0.7) !important; 
     border: 1px solid #8B4513 !important;
     color: #000 !important;
-    font-family: 'Playfair Display', serif;
-    height: 3rem;
-    border-radius: 5px;
-    margin-bottom: 1rem;
 }
 
 label {
     font-size: 1.2rem;
-    color: #3e2723 !important; /* Dark Brown labels for readability */
+    color: #3e2723 !important; /* Dark Brown labels */
     font-weight: bold;
     margin-bottom: 0.5rem;
     display: block;
 }
 
-/* ======================================================
-   9. BUTTONS (Black Theme)
-   ====================================================== */
+/* 10. BUTTONS (Black Theme) */
 .btn-primary, .btn, button {
     background-color: #000000 !important;
     color: white !important;
@@ -184,9 +203,7 @@ label {
     transform: translateY(-3px);
 }
 
-/* ======================================================
-   10. HELPER CLASSES
-   ====================================================== */
+/* 11. Helper Classes */
 .profile-pic {
     display: block;
     margin: 0 auto 2rem auto;
@@ -196,18 +213,10 @@ label {
     border-radius: 50%;
     border: 4px solid #8B4513;
 }
-
-.gender { 
-    width: 100%; 
-    max-width: 20rem; 
-    margin: auto; 
+.profile-content hr {
+    background-color: #8B4513 !important;
+    opacity: 1;
 }
-
-.search-bar { 
-    text-align: center; 
-    margin-top: 2rem; 
-}
-
-.dropbar {
-    margin-right: 7rem;
-}
+.gender { width: 100%; max-width: 20rem; margin: auto; }
+.search-bar { text-align: center; margin-top: 2rem; }
+.dropbar { margin-right: 7rem; }
