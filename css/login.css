@@ -1,107 +1,257 @@
 /* 1. Import Fancy Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,500&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,500&display=swap');*/
+
+/* 2. Full Screen Background */
+/*.bg-image {*/
+/*    background-image: url('../images/images1/customer.jpg');*/
+/*    min-height: 100vh;*/
+/*    min-width: 100vw;*/
+/*    background-position: center;*/
+/*    background-repeat: no-repeat;*/
+/*    background-size: cover;*/
+/*    background-attachment: fixed;*/
+/*}*/
+
+/* 3. The Main Login Container */
+/*.login-box {*/
+    /* Deep Brown/Mahogany with transparency */
+/*    background-color: rgba(61, 30, 20, 0.85); */
+    
+    /* Box Shape & Sizing */
+    min-height: 30rem; /* Increased slightly to fit new fonts */
+    width: 40rem;      /* Increased width so it doesn't look cramped */
+/*    margin: 6rem auto;*/
+/*    border-radius: 15px;*/
+/*    padding: 2rem;*/
+    
+    /* 3D Shadow and Text Color */
+/*    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*}*/
+
+/* 4. The Header (Library System) */
+/*.header {*/
+/*    text-align: center;*/
+    color: #ffebcd; /* Gold/Cream color */
+    
+    /* Fancy Cursive Font */
+/*    font-family: 'Dancing Script', cursive; */
+/*    font-size: 3.5rem;*/
+/*    font-weight: 700;*/
+    
+    /* Shadow for depth */
+/*    text-shadow: 3px 3px 6px #000000;*/
+/*    margin-bottom: 2rem;*/
+/*}*/
+
+/* 5. The Form Section (Inputs) */
+/*.login-form {*/
+/*    margin-top: 2rem;*/
+/*    text-align: left;*/
+/*    padding-left: 2rem;*/
+    
+    /* Changed border from Black to White so it shows up! */
+/*    border-left: 2px solid rgba(255, 255, 255, 0.5); */
+/*}*/
+
+/* Labels inside the form */
+/*.login-form label {*/
+/*    font-family: 'Playfair Display', serif;*/
+/*    font-size: 1.2rem;*/
+/*    letter-spacing: 0.5px;*/
+/*    margin-bottom: 5px;*/
+/*}*/
+
+/* Inputs styling */
+/*.form-control {*/
+/*    background-color: rgba(255, 255, 255, 0.9);*/
+/*    border: none;*/
+/*    margin-bottom: 1rem;*/
+/*}*/
+
+/* 6. The Sign Up Link Section */
+/*.sign-up {*/
+    margin-top: 4rem; /* Spacing for the 'Create Account' text */
+/*    font-family: 'Playfair Display', serif;*/
+/*    font-size: 1.1rem;*/
+/*}*/
+
+/*.sign-up a {*/
+    color: #ffebcd; /* Gold color for links */
+/*    text-decoration: underline;*/
+/*}*/
+
+/*.sign-up a:hover {*/
+/*    color: white;*/
+/*}*/
+
+/* 7. Buttons (Black Theme) */
+/*.btn-primary, button {*/
+    background-color: #000000;  /* Pure Black */
+/*    color: white;*/
+/*    border: 1px solid white;*/
+/*    padding: 8px 30px;*/
+/*    font-family: 'Playfair Display', serif;*/
+/*    font-size: 1.1rem;*/
+/*    border-radius: 30px;*/
+/*    transition: all 0.3s ease;*/
+/*    margin-top: 1rem;*/
+/*}*/
+
+/*.btn-primary:hover, button:hover {*/
+/*    background-color: #333333;*/
+/*    border-color: #ffebcd;*/
+/*    transform: translateY(-2px);*/
+/*    box-shadow: 0 5px 15px rgba(0,0,0,0.5);*/
+/*}*/
+/* 1. Import Fancy Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;1,500&family=Lato:wght@300;400&display=swap');
 
 /* 2. Full Screen Background */
 .bg-image {
     background-image: url('../images/images1/customer.jpg');
     min-height: 100vh;
-    min-width: 100vw;
+    width: 100vw;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    /* Adds a dark overlay so text is always readable */
+    position: relative;
+}
+
+.bg-image::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Darkens the background image slightly */
+    z-index: 0;
 }
 
 /* 3. The Main Login Container */
 .login-box {
-    /* Deep Brown/Mahogany with transparency */
-    background-color: rgba(61, 30, 20, 0.85); 
+    position: relative;
+    z-index: 1;
+
+    /* Gradient Mahogany with Blur (Glass Effect) */
+    background: linear-gradient(135deg, rgba(61, 30, 20, 0.9), rgba(40, 15, 10, 0.95));
+    backdrop-filter: blur(8px); /* This blurs the books behind the box! */
     
     /* Box Shape & Sizing */
-    min-height: 30rem; /* Increased slightly to fit new fonts */
-    width: 40rem;      /* Increased width so it doesn't look cramped */
+    min-height: 35rem;
+    width: 90%;
+    max-width: 55rem; /* Wider to let the content breathe */
     margin: 6rem auto;
-    border-radius: 15px;
-    padding: 2rem;
+    border-radius: 20px;
+    padding: 3rem;
     
-    /* 3D Shadow and Text Color */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-    color: white;
-    text-align: center;
+    /* Elegant Border & Deep Shadow */
+    border: 1px solid rgba(255, 235, 205, 0.2); 
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    color: #ffebcd; /* Default text color is Gold/Cream */
 }
 
 /* 4. The Header (Library System) */
 .header {
     text-align: center;
-    color: #ffebcd; /* Gold/Cream color */
-    
-    /* Fancy Cursive Font */
+    color: #ffebcd;
     font-family: 'Dancing Script', cursive; 
-    font-size: 3.5rem;
+    font-size: 4.5rem; /* Larger and grander */
     font-weight: 700;
     
-    /* Shadow for depth */
-    text-shadow: 3px 3px 6px #000000;
-    margin-bottom: 2rem;
+    /* Soft Glow Shadow */
+    text-shadow: 0 0 10px rgba(255, 235, 205, 0.3), 3px 3px 6px #000;
+    margin-bottom: 3rem;
 }
 
 /* 5. The Form Section (Inputs) */
 .login-form {
-    margin-top: 2rem;
+    margin-top: 1rem;
     text-align: left;
-    padding-left: 2rem;
+    padding-left: 3rem;
     
-    /* Changed border from Black to White so it shows up! */
-    border-left: 2px solid rgba(255, 255, 255, 0.5); 
+    /* Fading Gradient Divider instead of solid white line */
+    border-left: 2px solid;
+    border-image: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.5), transparent) 1 100%;
 }
 
-/* Labels inside the form */
+/* Section Headers (e.g. "Already have an account?") */
+h3, h4, h5 { 
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+/* Labels */
 .login-form label {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    letter-spacing: 0.5px;
-    margin-bottom: 5px;
-}
-
-/* Inputs styling */
-.form-control {
-    background-color: rgba(255, 255, 255, 0.9);
-    border: none;
-    margin-bottom: 1rem;
-}
-
-/* 6. The Sign Up Link Section */
-.sign-up {
-    margin-top: 4rem; /* Spacing for the 'Create Account' text */
-    font-family: 'Playfair Display', serif;
     font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* New Input Style: Transparent & Underlined */
+.form-control {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3); /* Underline only */
+    border-radius: 0;
+    color: white;
+    padding: 10px 5px;
+    width: 100%;
+    font-family: 'Lato', sans-serif; /* Cleaner font for typing */
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    background-color: rgba(255, 235, 205, 0.1);
+    border-bottom: 2px solid #ffebcd; /* Turns gold when clicked */
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+    font-style: italic;
+}
+
+/* 6. The Sign Up Link Section (Left Side) */
+.sign-up {
+    margin-top: 4rem; 
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .sign-up a {
-    color: #ffebcd; /* Gold color for links */
-    text-decoration: underline;
+    color: #ffebcd;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px dotted #ffebcd;
 }
 
-.sign-up a:hover {
-    color: white;
-}
-
-/* 7. Buttons (Black Theme) */
+/* 7. Buttons (Gold Outline Theme) */
 .btn-primary, button {
-    background-color: #000000;  /* Pure Black */
-    color: white;
-    border: 1px solid white;
-    padding: 8px 30px;
+    background-color: transparent;
+    color: #ffebcd;
+    border: 2px solid #ffebcd;
+    padding: 10px 40px;
     font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-    margin-top: 1rem;
+    font-size: 1.2rem;
+    border-radius: 50px; /* Pill shape */
+    transition: all 0.4s ease;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .btn-primary:hover, button:hover {
-    background-color: #333333;
-    border-color: #ffebcd;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    background-color: #ffebcd;
+    color: #3d1e14; /* Dark brown text on hover */
+    transform: translateY(-3px); /* Floats up slightly */
+    box-shadow: 0 0 20px rgba(255, 235, 205, 0.4); /* Glowing effect */
 }
