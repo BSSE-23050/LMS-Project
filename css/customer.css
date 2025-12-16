@@ -83,11 +83,11 @@ h1, h2, h3, h4, h5, .header {
     text-shadow: 2px 2px 0px #000000 !important;
     
     /* THE HIGHLIGHTER EFFECT */
-    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black box */
-    display: inline-block;      /* Wraps the box around the text only */
-    padding: 10px 40px;         /* Adds space inside the highlighter */
-    border-radius: 50px;        /* Smooth rounded edges */
-    border: 1px solid #ffebcd;  /* Gold border around the highlighter */
+    background-color: rgba(0, 0, 0, 0.6); 
+    display: inline-block;      
+    padding: 10px 40px;         
+    border-radius: 50px;        
+    border: 1px solid #ffebcd;  
     
     text-align: center;
     margin-bottom: 2rem;
@@ -104,6 +104,7 @@ h1, h2, h3, h4, h5, .header {
 /* ======================================================
    7. STATS BARS (Dark Vintage Theme)
    ====================================================== */
+/* This targets the 'Total books borrowed' STATS BARS */
 .list-group-item, .alert, .alert-info, .card {
     background-color: rgba(61, 30, 20, 0.95) !important; 
     color: #fff !important;
@@ -129,13 +130,15 @@ h1, h2, h3, h4, h5, .header {
 }
 
 /* ======================================================
-   8. FORMS (Profile, Books, etc.)
+   8. FORMS & TABLES (Dark Vintage Theme)
    ====================================================== */
+/* This targets the main forms AND the table showing borrowed books (image_720432.jpg) */
 .profile-content, 
 .books-content, 
 .change-password, 
 .modify-customer, 
-.request-books {
+.request-books,
+.table-responsive, .table { /* Targeting the Table container and the table itself */
     background-color: rgba(61, 30, 20, 0.9) !important;
     color: white !important;
     border: 1px solid #ffebcd;
@@ -144,7 +147,24 @@ h1, h2, h3, h4, h5, .header {
     padding: 2rem;
     box-shadow: 0 10px 25px rgba(0,0,0,0.6);
     float: none;
-    max-width: 800px;
+    max-width: 95%; /* Increased width for tables */
+}
+
+/* Table Header (ID, Genre, Title...) */
+.table thead th {
+    background-color: rgba(80, 40, 30, 0.9) !important; /* Slightly lighter dark brown for header */
+    color: #ffebcd !important; /* Gold text */
+    border-bottom: 1px solid #ffebcd !important;
+}
+
+/* Table Body Rows */
+.table tbody tr {
+    background-color: transparent !important; /* Rows blend into the dark container */
+    color: white !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+.table-hover tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important; /* Subtle highlight on hover */
 }
 
 /* 9. Buttons (Black Theme) */
