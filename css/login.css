@@ -14,97 +14,97 @@
 
 /* 3. The Main Login Container */
 /*.login-box {*/
-    /* Deep Brown/Mahogany with transparency */
+/*     Deep Brown/Mahogany with transparency */
 /*    background-color: rgba(61, 30, 20, 0.85); */
     
-    /* Box Shape & Sizing */
-    min-height: 30rem; /* Increased slightly to fit new fonts */
-    width: 40rem;      /* Increased width so it doesn't look cramped */
-/*    margin: 6rem auto;*/
-/*    border-radius: 15px;*/
-/*    padding: 2rem;*/
+/*     Box Shape & Sizing */
+    /*min-height: 30rem; /* Increased slightly to fit new fonts 
+    width: 40rem;      /* Increased width so it doesn't look cramped 
+    margin: 6rem auto;
+    border-radius: 15px;
+    padding: 2rem;
     
-    /* 3D Shadow and Text Color */
-/*    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);*/
-/*    color: white;*/
-/*    text-align: center;*/
-/*}*/
+     3D Shadow and Text Color 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+}
 
-/* 4. The Header (Library System) */
-/*.header {*/
-/*    text-align: center;*/
-    color: #ffebcd; /* Gold/Cream color */
+ 4. The Header (Library System) 
+.header {
+    text-align: center;
+    color: #ffebcd; /* Gold/Cream color 
     
-    /* Fancy Cursive Font */
-/*    font-family: 'Dancing Script', cursive; */
-/*    font-size: 3.5rem;*/
-/*    font-weight: 700;*/
+     Fancy Cursive Font 
+    font-family: 'Dancing Script', cursive; 
+    font-size: 3.5rem;
+    font-weight: 700;
     
-    /* Shadow for depth */
-/*    text-shadow: 3px 3px 6px #000000;*/
-/*    margin-bottom: 2rem;*/
-/*}*/
+     Shadow for depth 
+    text-shadow: 3px 3px 6px #000000;
+    margin-bottom: 2rem;
+}
 
-/* 5. The Form Section (Inputs) */
-/*.login-form {*/
-/*    margin-top: 2rem;*/
-/*    text-align: left;*/
-/*    padding-left: 2rem;*/
+ 5. The Form Section (Inputs) 
+.login-form {
+    margin-top: 2rem;
+    text-align: left;
+    padding-left: 2rem;
     
-    /* Changed border from Black to White so it shows up! */
-/*    border-left: 2px solid rgba(255, 255, 255, 0.5); */
-/*}*/
+     Changed border from Black to White so it shows up! 
+    border-left: 2px solid rgba(255, 255, 255, 0.5); 
+}
 
-/* Labels inside the form */
-/*.login-form label {*/
-/*    font-family: 'Playfair Display', serif;*/
-/*    font-size: 1.2rem;*/
-/*    letter-spacing: 0.5px;*/
-/*    margin-bottom: 5px;*/
-/*}*/
+ Labels inside the form 
+.login-form label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+}
 
-/* Inputs styling */
-/*.form-control {*/
-/*    background-color: rgba(255, 255, 255, 0.9);*/
-/*    border: none;*/
-/*    margin-bottom: 1rem;*/
-/*}*/
+ Inputs styling 
+.form-control {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    margin-bottom: 1rem;
+}
 
-/* 6. The Sign Up Link Section */
-/*.sign-up {*/
-    margin-top: 4rem; /* Spacing for the 'Create Account' text */
-/*    font-family: 'Playfair Display', serif;*/
-/*    font-size: 1.1rem;*/
-/*}*/
+ 6. The Sign Up Link Section 
+.sign-up {
+    margin-top: 4rem; /* Spacing for the 'Create Account' text 
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+}
 
-/*.sign-up a {*/
-    color: #ffebcd; /* Gold color for links */
-/*    text-decoration: underline;*/
-/*}*/
+.sign-up a {
+    color: #ffebcd; /* Gold color for links 
+    text-decoration: underline;
+}
 
-/*.sign-up a:hover {*/
-/*    color: white;*/
-/*}*/
+.sign-up a:hover {
+    color: white;
+}
 
-/* 7. Buttons (Black Theme) */
-/*.btn-primary, button {*/
-    background-color: #000000;  /* Pure Black */
-/*    color: white;*/
-/*    border: 1px solid white;*/
-/*    padding: 8px 30px;*/
-/*    font-family: 'Playfair Display', serif;*/
-/*    font-size: 1.1rem;*/
-/*    border-radius: 30px;*/
-/*    transition: all 0.3s ease;*/
-/*    margin-top: 1rem;*/
-/*}*/
+ 7. Buttons (Black Theme) 
+.btn-primary, button {
+    background-color: #000000;  /* Pure Black 
+    color: white;
+    border: 1px solid white;
+    padding: 8px 30px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
 
-/*.btn-primary:hover, button:hover {*/
-/*    background-color: #333333;*/
-/*    border-color: #ffebcd;*/
-/*    transform: translateY(-2px);*/
-/*    box-shadow: 0 5px 15px rgba(0,0,0,0.5);*/
-/*}*/
+.btn-primary:hover, button:hover {
+    background-color: #333333;
+    border-color: #ffebcd;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
 /* 1. Import Fancy Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;1,500&family=Lato:wght@300;400&display=swap');
 
