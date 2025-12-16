@@ -1,258 +1,155 @@
-/* 1. Import Fancy Fonts */
-/*@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,500&display=swap');*/
-
-/* 2. Full Screen Background */
-/*.bg-image {*/
-/*    background-image: url('../images/images1/customer.jpg');*/
-/*    min-height: 100vh;*/
-/*    min-width: 100vw;*/
-/*    background-position: center;*/
-/*    background-repeat: no-repeat;*/
-/*    background-size: cover;*/
-/*    background-attachment: fixed;*/
-/*}*/
-
-/* 3. The Main Login Container */
-/*.login-box {*/
-/*     Deep Brown/Mahogany with transparency */
-/*    background-color: rgba(61, 30, 20, 0.85); */
-    
-/*     Box Shape & Sizing */
-    /*min-height: 30rem; /* Increased slightly to fit new fonts 
-    width: 40rem;      /* Increased width so it doesn't look cramped 
-    margin: 6rem auto;
-    border-radius: 15px;
-    padding: 2rem;
-    
-     3D Shadow and Text Color 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-    color: white;
-    text-align: center;
-}
-
- 4. The Header (Library System) 
-.header {
-    text-align: center;
-    color: #ffebcd; /* Gold/Cream color 
-    
-     Fancy Cursive Font 
-    font-family: 'Dancing Script', cursive; 
-    font-size: 3.5rem;
-    font-weight: 700;
-    
-     Shadow for depth 
-    text-shadow: 3px 3px 6px #000000;
-    margin-bottom: 2rem;
-}
-
- 5. The Form Section (Inputs) 
-.login-form {
-    margin-top: 2rem;
-    text-align: left;
-    padding-left: 2rem;
-    
-     Changed border from Black to White so it shows up! 
-    border-left: 2px solid rgba(255, 255, 255, 0.5); 
-}
-
- Labels inside the form 
-.login-form label {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    letter-spacing: 0.5px;
-    margin-bottom: 5px;
-}
-
- Inputs styling 
-.form-control {
-    background-color: rgba(255, 255, 255, 0.9);
-    border: none;
-    margin-bottom: 1rem;
-}
-
- 6. The Sign Up Link Section 
-.sign-up {
-    margin-top: 4rem; /* Spacing for the 'Create Account' text 
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-}
-
-.sign-up a {
-    color: #ffebcd; /* Gold color for links 
-    text-decoration: underline;
-}
-
-.sign-up a:hover {
-    color: white;
-}
-
- 7. Buttons (Black Theme) 
-.btn-primary, button {
-    background-color: #000000;  /* Pure Black 
-    color: white;
-    border: 1px solid white;
-    padding: 8px 30px;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-    margin-top: 1rem;
-}
-
-.btn-primary:hover, button:hover {
-    background-color: #333333;
-    border-color: #ffebcd;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-}
-/* 1. Import Fancy Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;1,500&family=Lato:wght@300;400&display=swap');
+/* 1. Import New Elegant Fonts
+   'Cinzel' for a Roman/Architecture look (Header)
+   'Lato' for clean, easy reading (Inputs/Body) */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lato:wght@300;400;700&display=swap');
 
 /* 2. Full Screen Background */
 .bg-image {
-    /* REPLACE 'library-bg.jpg' with your actual filename if different */
+    /* Ensure the path matches your specific file location */
     background-image: url('../images/images1/Bookshelf Wallpaper Desktop HD.jfif'); 
     min-height: 100vh;
-    width: 100vw;
-    background-position: center;
+    min-width: 100vw;
+    background-position: center bottom; /* Adjusted to see the floor/shelves better */
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    position: relative;
+    
+    /* Flexbox to perfectly center the login box without using margins */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Dark Overlay - Critical for your new image so the lamp doesn't blind the text */
-.bg-image::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.5); /* Slightly darker to handle the bright lamp */
-    z-index: 0;
-}
-
-/* 3. The Main Login Container */
+/* 3. The Main Login Container - "Dark Frosted Glass" Style */
 .login-box {
-    position: relative;
-    z-index: 1;
+    /* Dark semi-transparent background */
+    background-color: rgba(20, 15, 10, 0.85); 
+    
+    /* The Blur Effect (Frosted Glass) - Makes text pop against books */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
-    /* Gradient Mahogany with Blur (Glass Effect) */
-    background: linear-gradient(135deg, rgba(61, 30, 20, 0.85), rgba(40, 15, 10, 0.9));
-    backdrop-filter: blur(10px); /* Higher blur to make the books behind look dreamy */
+    /* Sizing - Made it slightly narrower for elegance */
+    width: 28rem;
+    min-height: auto;
+    border-radius: 8px; /* Slightly sharper corners, more book-like */
+    padding: 3rem 2.5rem;
     
-    /* Box Shape & Sizing */
-    min-height: 35rem;
-    width: 90%;
-    max-width: 55rem; 
-    margin: 6rem auto;
-    border-radius: 20px;
-    padding: 3rem;
+    /* Subtle glow border instead of harsh shadow */
+    border: 1px solid rgba(255, 235, 205, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
     
-    /* Elegant Border & Deep Shadow */
-    border: 1px solid rgba(255, 235, 205, 0.2); 
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-    color: #ffebcd; 
+    color: #f0f0f0;
+    text-align: center;
+    margin: 0; /* Flexbox in parent handles centering now */
 }
 
 /* 4. The Header (Library System) */
 .header {
     text-align: center;
-    color: #ffebcd;
-    font-family: 'Dancing Script', cursive; 
-    font-size: 4.5rem; 
-    font-weight: 700;
+    color: #eecfa1; /* Parchment/Gold color to match the ceiling lights */
     
-    /* Soft Glow Shadow */
-    text-shadow: 0 0 10px rgba(255, 235, 205, 0.3), 3px 3px 6px #000;
-    margin-bottom: 3rem;
+    /* Majestic Font */
+    font-family: 'Cinzel', serif; 
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase; /* Looks like a building engraving */
+    
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(238, 207, 161, 0.3);
+    padding-bottom: 1rem;
 }
 
 /* 5. The Form Section (Inputs) */
 .login-form {
     margin-top: 1rem;
     text-align: left;
-    padding-left: 3rem;
-    
-    /* Fading Gradient Divider */
-    border-left: 2px solid;
-    border-image: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.5), transparent) 1 100%;
+    padding-left: 0; /* Removed padding to center align */
+    border-left: none; /* Removed the border, it felt cluttered */
 }
 
-/* Section Headers */
-h3, h4, h5 { 
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
-    margin-bottom: 1.5rem;
-    color: #fff;
-}
-
-/* Labels */
+/* Labels inside the form */
 .login-form label {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 5px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #d3c0a6; /* Muted beige */
+    margin-bottom: 8px;
     display: block;
 }
 
-/* Input Style: Transparent & Underlined */
+/* Inputs styling */
 .form-control {
-    background-color: transparent;
-    border: none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 0;
-    color: white;
-    padding: 10px 5px;
     width: 100%;
+    /* Dark input background */
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    
+    /* Underline style instead of a box */
+    border: none;
+    border-bottom: 2px solid #5a4a42;
+    border-radius: 4px;
+    
+    padding: 12px;
+    margin-bottom: 1.5rem;
     font-family: 'Lato', sans-serif;
     transition: all 0.3s ease;
 }
 
+/* Input Focus State */
 .form-control:focus {
     outline: none;
-    background-color: rgba(255, 235, 205, 0.1);
-    border-bottom: 2px solid #ffebcd; 
-}
-
-.form-control::placeholder {
-    color: rgba(255, 255, 255, 0.3);
-    font-style: italic;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid #eecfa1; /* Gold underline on focus */
 }
 
 /* 6. The Sign Up Link Section */
 .sign-up {
-    margin-top: 4rem; 
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
+    margin-top: 2.5rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.95rem;
+    color: #aaa;
 }
 
 .sign-up a {
-    color: #ffebcd;
+    color: #eecfa1; /* Gold */
     text-decoration: none;
-    font-weight: bold;
-    border-bottom: 1px dotted #ffebcd;
+    font-weight: 700;
+    transition: color 0.3s;
 }
 
-/* 7. Buttons */
+.sign-up a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* 7. Buttons (Refined Style) */
 .btn-primary, button {
-    background-color: transparent;
-    color: #ffebcd;
-    border: 2px solid #ffebcd;
-    padding: 10px 40px;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    border-radius: 50px; 
-    transition: all 0.4s ease;
-    cursor: pointer;
-    margin-top: 1.5rem;
-    text-transform: uppercase;
+    width: 100%;
+    /* Gradient Gold/Bronze background */
+    background: linear-gradient(135deg, #8b5a2b 0%, #5c3a1e 100%);
+    
+    color: #fff;
+    border: none;
+    padding: 12px 0;
+    
+    font-family: 'Cinzel', serif; /* Matching the header */
+    font-weight: 700;
+    font-size: 1rem;
     letter-spacing: 1px;
+    
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .btn-primary:hover, button:hover {
-    background-color: #ffebcd;
-    color: #3d1e14; 
-    transform: translateY(-3px); 
-    box-shadow: 0 0 20px rgba(255, 235, 205, 0.4); 
+    background: linear-gradient(135deg, #a06b35 0%, #704828 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 90, 43, 0.4); /* warm glow shadow */
 }
