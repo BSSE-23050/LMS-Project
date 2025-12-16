@@ -1,33 +1,41 @@
+/* 1. Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,500&display=swap');
+
+/* 2. Global Background & Settings */
 body {
-    /* Replace 'your-animation.gif' with your actual file path */
-    background-image: url('../images/images1/my2.jpg'); 
-    background-size: cover;       /* Ensures image covers the whole screen */
-    background-repeat: no-repeat; /* Prevents tiling */
-    background-attachment: fixed; /* Keeps background still while scrolling */
+    /* Make sure this points to your library image */
+    background-image: url('../images/images1/customer.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-position: center;
+    font-family: 'Playfair Display', serif;
+    color: #333;
 }
 
-/* Update your .container-fluid to be transparent so the background shows through */
-.container-fluid {
-    background-color: rgba(255, 255, 255, 0.9); /* 0.9 makes it slightly see-through */
-    /* background-color: white;  <-- Remove or comment out the solid white */
+/* 3. Top Navbar (Light Brown) */
+.navbar {
+    background-color: #DEB887 !important; /* BurlyWood */
+    border-bottom: 2px solid #8B4513 !important;     /* SaddleBrown */
+    min-height: 8vh;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
-/* admin/home.css */
+
+.navbar-brand, .nav-link {
+    color: #3e2723 !important; /* Dark Brown Text */
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
 .navbar-nav {
     margin-right: 6rem;
 }
 
-.navbar {
-    min-height: 8vh;
-}
-
-.container-fluid {
-    background-color: white;
-    /* overflow-x: auto; */
-    /* margin-left: 200px; */
-}
-
+/* 4. Sidebar (Matching Light Brown) */
 .sidebar {
+    background-color: #DEB887 !important;
+    border-right: 2px solid #8B4513 !important;
     min-height: 100vh;
     padding-top: 5rem;
     padding-left: 3rem;
@@ -35,110 +43,171 @@ body {
     position: fixed;
     z-index: 1;
     overflow-x: hidden;
+    width: 18%; 
 }
 
-.sidebar a:visited {
-    text-decoration: none;
+/* Sidebar Links */
+.sidebar a {
+    color: #3e2723 !important;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
 }
 
 .sidebar a:hover {
+    color: #000 !important;
+    text-shadow: 0px 0px 1px #8B4513;
+    transform: translateX(5px);
     text-decoration: none;
 }
 
+/* 5. Main Content Area */
 .content {
-    margin-top: 1rem;
+    margin-top: 2rem;
     position: relative;
-    left: 16%;
+    left: 20%;      
+    width: 75%;    
+    padding-right: 2rem;
 }
 
+.container-fluid {
+    background-color: transparent !important;
+}
 
-/* admin/books.css */
+/* ======================================================
+   6. HEADINGS (Gold Text with Highlighter Box)
+   ====================================================== */
+h1, h2, h3, h4, h5, .header {
+    font-family: 'Dancing Script', cursive !important;
+    color: #ffebcd !important;  /* Gold Text */
+    text-shadow: 2px 2px 0px #000000 !important;
+    
+    /* THE HIGHLIGHTER EFFECT */
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black box */
+    display: inline-block;      
+    padding: 10px 40px;         
+    border-radius: 50px;        
+    border: 1px solid #ffebcd;  
+    
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 700 !important;
+    font-size: 4rem !important; 
+    
+    /* Center the heading */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+}
+
+/* ======================================================
+   7. ADMIN FORMS (Light Brown Theme)
+   ====================================================== */
+/* Applying the Light Brown background + Dark Text style */
+.profile-content, 
+.books-content, 
+.change-password, 
+.modify-customer,
+.card, .list-group-item {
+    background-color: #DEB887 !important; /* Light Brown */
+    color: #3e2723 !important;            /* Dark Text */
+    
+    border: 2px solid #8B4513 !important;
+    border-radius: 20px !important;
+    margin: 2rem auto;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    
+    /* Fix layout issues (removing float) */
+    float: none;
+    max-width: 900px;
+    height: auto !important; /* Allow height to grow */
+}
+
+/* Specific separator lines in profile */
+.profile-content hr {
+    background-color: #8B4513 !important; /* Brown line instead of grey */
+    opacity: 1;
+}
+
+/* Links inside forms */
+.profile-content a, .books-content a {
+    color: #000;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.profile-content a:hover {
+    color: #fff;
+}
+
+/* ======================================================
+   8. INPUTS & SEARCH BARS
+   ====================================================== */
+.form-control, select {
+    background-color: rgba(255, 255, 255, 0.7) !important; 
+    border: 1px solid #8B4513 !important;
+    color: #000 !important;
+    font-family: 'Playfair Display', serif;
+    height: 3rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+label {
+    font-size: 1.2rem;
+    color: #3e2723 !important; /* Dark Brown labels for readability */
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* ======================================================
+   9. BUTTONS (Black Theme)
+   ====================================================== */
+.btn-primary, .btn, button {
+    background-color: #000000 !important;
+    color: white !important;
+    border: 1px solid white !important;
+    padding: 10px 30px;
+    font-family: 'Playfair Display', serif;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-primary:hover, .btn:hover, button:hover {
+    background-color: #333333 !important;
+    border-color: #DEB887 !important;
+    transform: translateY(-3px);
+}
+
+/* ======================================================
+   10. HELPER CLASSES
+   ====================================================== */
+.profile-pic {
+    display: block;
+    margin: 0 auto 2rem auto;
+    width: 15rem;
+    height: 15rem;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #8B4513;
+}
+
+.gender { 
+    width: 100%; 
+    max-width: 20rem; 
+    margin: auto; 
+}
+
+.search-bar { 
+    text-align: center; 
+    margin-top: 2rem; 
+}
 
 .dropbar {
     margin-right: 7rem;
-}
-
-.search-bar {
-    margin-top: 2rem;
-}
-
-
-/* admin/profile.css */
-
-.profile-content {
-    /* background-color: #343A40; */
-    background-color: #CCE5FF;
-    height: 35rem;
-    margin-left: 2rem;
-    float: left;
-    /* opacity: 0.5; */
-    color: black;
-    padding-top: 2rem;
-    text-align: center;
-}
-
-.profile-content hr {
-    background-color: grey;
-}
-
-.profile-content a:visited {
-    text-decoration: none;
-}
-
-.profile-content a:hover {
-    text-decoration: none;
-}
-
-.profile-pic {
-    width: 25rem;
-    padding-left: 2rem;
-}
-
-
-/* admin/books/add.css */
-
-.books-content {
-    /* background-color: #343A40; */
-    background-color: #CCE5FF;
-    height: 46rem;
-    margin-left: 2rem;
-    float: left;
-    /* opacity: 0.5; */
-    color: black;
-    padding-top: 2rem;
-    text-align: center;
-}
-
-/* admin/changepass.css */
-
-.change-password {
-    /* background-color: #343A40; */
-    background-color: #CCE5FF;
-    height: 25rem;
-    margin-left: 2rem;
-    margin-top: 5rem;
-    float: left;
-    /* opacity: 0.5; */
-    color: black;
-    padding-top: 2rem;
-    text-align: center;
-}
-
-/* admin/customers/add.css */
-
-.modify-customer {
-    /* background-color: #343A40; */
-    background-color: #CCE5FF;
-    height: 42rem;
-    margin-left: 2rem;
-    float: left;
-    /* opacity: 0.5; */
-    color: black;
-    padding-top: 2rem;
-    text-align: center;
-}
-
-.gender {
-    width: 20rem;
-    margin: auto;
 }
