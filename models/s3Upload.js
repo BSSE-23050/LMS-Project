@@ -1,7 +1,7 @@
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const path = require('path');
-const s3Config = require('./s3config'); // Your handshake file
+const s3Config = require('./models/s3config'); // Your handshake file
 
 const upload = multer({
     storage: multerS3({
