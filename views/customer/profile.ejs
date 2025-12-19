@@ -65,7 +65,7 @@
                         </div>
                         <hr>
 
-                        <form action="/customer/profile/edit" method="POST" enctype="multipart/form-data" id="customerInstantUploadForm">
+                        <form action="/customer/profile/edit" method="POST" enctype="multipart/form-data" id="instantUploadForm">
                             
                             <input type="hidden" name="user_id" value="<%=res.user_id%>">
                             <input type="hidden" name="name" value="<%=res.name%>">
@@ -75,14 +75,14 @@
                             <input type="hidden" name="gender" value="<%=res.gender%>">
                             <input type="hidden" name="old_profile_pic" value="<%=res.profile_pic%>">
 
-                            <label for="cust_photo_upload" class="btn btn-sm btn-info" style="cursor: pointer;">
+                            <button type="button" class="btn btn-sm btn-info" onclick="document.getElementById('cust_photo_input').click();">
                                 Update Profile Photo
-                            </label>
+                            </button>
 
-                            <input type="file" name="profile_pic" id="cust_photo_upload" style="display: none;" onchange="this.form.submit()">
+                            <input type="file" name="profile_pic" id="cust_photo_input" style="display: none;" onchange="this.form.submit()">
                         </form>
                         
-                        <p class="small text-muted mt-2">Powered by Amazon S3 Storage</p>
+                        <p class="small text-muted mt-2">Uploading to AWS S3 Bucket</p>
                     </div>
                 </div>
             </div>
