@@ -36,7 +36,7 @@ router.get('/profile/edit', (req, res)=> {
             res.send("invalid");
         }
         else {
-            res.render('customer/profile', {res: result, errs: []});
+            res.render('customer/profile-edit', {res: result, errs: []});
         }
     });
 });
