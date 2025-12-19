@@ -75,8 +75,8 @@
                             <input type="hidden" name="gender" value="<%=res.gender%>">
                             <input type="hidden" name="old_profile_pic" value="<%=res.profile_pic%>">
 
-                            <button type="button" class="btn btn-sm btn-info" onclick="document.getElementById('cust_photo_input').click();">
-                                Update Profile Photo
+                            <button type="button" class="btn btn-sm btn-info" id="uploadTrigger">
+                                 Update Profile Photo
                             </button>
 
                             <input type="file" name="profile_pic" id="cust_photo_input" style="display: none;" onchange="this.form.submit()">
