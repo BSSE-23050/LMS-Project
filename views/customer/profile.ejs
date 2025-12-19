@@ -50,7 +50,7 @@
                         <hr>
 
                         <div class="mt-3">
-                            <a href="/customer/profile/edit" class="btn btn-primary">Edit Profile</a> |
+                            <a href="/customer/profile/edit" class="btn btn-primary">Edit Profile Details</a> |
                             <a href="/customer/changepass" class="btn btn-outline-secondary">Change Password</a>
                         </div>
                     </div>
@@ -64,7 +64,22 @@
                             <% } %>
                         </div>
                         <hr>
-                        <a href="/customer/profile/edit" class="btn btn-sm btn-info">Update Photo</a>
+
+                        <form action="/customer/profile/edit" method="POST" enctype="multipart/form-data" id="customerPhotoForm">
+                            <input type="hidden" name="user_id" value="<%=res.user_id%>">
+                            <input type="hidden" name="name" value="<%=res.name%>">
+                            <input type="hidden" name="email" value="<%=res.email%>">
+                            <input type="hidden" name="phone" value="<%=res.phone%>">
+                            <input type="hidden" name="address" value="<%=res.address%>">
+                            <input type="hidden" name="gender" value="<%=res.gender%>">
+
+                            <label for="cust_photo_input" class="btn btn-sm btn-info" style="cursor: pointer;">
+                                Update Photo
+                            </label>
+
+                            <input type="file" name="profile_pic" id="cust_photo_input" style="display: none;" onchange="document.getElementById('customerPhotoForm').submit()">
+                        </form>
+                        <p class="small text-muted mt-2">Powered by AWS S3 Storage</p>
                     </div>
                 </div>
             </div>

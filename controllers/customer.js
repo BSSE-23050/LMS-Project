@@ -72,7 +72,7 @@ router.post('/profile/edit', upload.single('profile_pic'), (req, res)=> {
         }
         else {
             // Pass data back so form remains sticky
-            res.render('customer/profile-edit', {errs: errors, res: data});
+            res.render('customer/profile', {errs: errors, res: data});
         }
     });
 });
