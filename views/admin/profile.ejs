@@ -80,6 +80,19 @@
                             <input type="file" name="profile_pic" id="profile_pic_input" style="display: none;" onchange="document.getElementById('instantUploadForm').submit()">
                         </form>
                         <p class="small text-muted">Upload directly to S3 bucket</p>
+                        
+                        <script>
+        document.getElementById('uploadTrigger').addEventListener('click', function(e) {
+            e.preventDefault(); // This kills the '#' behavior dead
+            document.getElementById('cust_photo_input').click();
+        });
+
+        document.getElementById('cust_photo_input').addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                document.getElementById('instantUploadForm').submit(); // Direct cloud POST
+            }
+        });
+    </script>
                     </div>
                 </div>
             </div>
