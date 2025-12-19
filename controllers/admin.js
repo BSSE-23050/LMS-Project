@@ -5,9 +5,12 @@ var bookModel = require.main.require('./models/bookModel');
 var validationRules = require.main.require('./validation_rules/rules');
 var asyncValidator = require('async-validator-2');
 
+// --- S3 UPLOAD SETUP ---
+var upload = require.main.require('./models/s3Upload'); // Import your middleware
+// -----------------------
+
 router.get('/home', (req, res)=> {
     userModel.getAll((users)=> {
-        // Safe check: if users is null, make it an empty array
         if (!users) users = []; 
         
         bookModel.getAll((books)=> {
@@ -20,14 +23,11 @@ router.get('/home', (req, res)=> {
                     if (!mostBorrowed) mostBorrowed = [];
 
                     bookModel.mostRequestedBook((mostRequested)=> {
-                        // FIX STARTS HERE: Even if mostRequested is null, we must define the other variables
-                        // We use a helper variable 'mrb_data' to avoid passing null if the view expects an object
                         var mrb_data = mostRequested ? mostRequested : null;
 
                         bookModel.mostBorrowedBook((mostBorrowedBook)=> {
                             var mbb_data = mostBorrowedBook ? mostBorrowedBook : null;
 
-                            // NOW WE RENDER WITH ALL VARIABLES DEFINED
                             res.render('admin/home', {
                                 usr: users.length, 
                                 bk: books.length, 
@@ -45,39 +45,43 @@ router.get('/home', (req, res)=> {
 });
 
 router.get('/profile', (req, res)=> {
-    var admin = userModel.getUser(req.session.admin, (result)=> {
+    userModel.getUser(req.session.admin, (result)=> {
         if(!result){
             res.send("invalid!");
         }
         else {
-            console.log(result);
             res.render('admin/profile', {res: result});
         }
     });
 });
 
 router.get('/profile/edit', (req, res)=> {
-    var admin = userModel.getUser(req.session.admin, (result)=> {
+    userModel.getUser(req.session.admin, (result)=> {
         if(!result){
             res.send("invalid");
         }
         else {
-            console.log(result);
             res.render('admin/profile-edit', {res: result, errs: []});
         }
     });
 });
 
-router.post('/profile/edit', (req, res)=> {
+// S3 INTEGRATED POST ROUTE
+router.post('/profile/edit', upload.single('profile_pic'), (req, res)=> {
     var rules = validationRules.users.update;
     var validator = new asyncValidator(rules);
+    
+    // Logic: Use new S3 URL if uploaded, otherwise keep the old one
+    var profilePicUrl = req.file ? req.file.location : req.body.old_profile_pic;
+
     var data = {
       user_id: req.body.user_id,
       name: req.body.name,
       email: req.body.email,
       phone: req.body.phone,
       address: req.body.address,
-      gender: req.body.gender
+      gender: req.body.gender,
+      profile_pic: profilePicUrl
     };
 
     validator.validate(data, (errors, fields)=> {
@@ -92,19 +96,17 @@ router.post('/profile/edit', (req, res)=> {
             });
         }
         else {
-            console.log(fields);
-            res.render('admin/profile-edit', {errs: errors, res: []});
+            res.render('admin/profile-edit', {errs: errors, res: data});
         }
     });
 });
 
 router.get('/changepass', (req, res)=> {
-    var admin = userModel.getUser(req.session.admin, (result)=> {
+    userModel.getUser(req.session.admin, (result)=> {
         if(!result){
             res.send("invalid!");
         }
         else {
-            console.log(result);
             res.render('admin/change-password', {res: result, errs: [], success: []});
         }
     });
@@ -137,7 +139,6 @@ router.post('/changepass', (req, res)=> {
                 }
             }
             else {
-                console.log(fields);
                 res.render('admin/change-password', {errs: errors, res: [], success: []});
             }
         });
@@ -154,21 +155,17 @@ router.get('/books', (req, res)=> {
             res.send("Invalid");
         }
         else {
-            console.log(result);
             res.render('admin/books', {res: result, errs: []});
         }
     });
 });
 
 router.post('/books', (req, res)=> {
-    var searchBy = req.body.searchBy;
-    var word = req.body.word;
-    bookModel.searchBy(searchBy, word, (result)=> {
+    bookModel.searchBy(req.body.searchBy, req.body.word, (result)=> {
         if(!result){
             res.render('admin/books', {res: [], errs: [{message: "No results found!"}]});
         }
         else {
-            console.log(result);
             res.render('admin/books', {res: result, errs: []})
         }
     });
@@ -180,21 +177,17 @@ router.get('/customers', (req, res)=> {
             res.send("Invalid");
         }
         else {
-            console.log(result);
             res.render('admin/customers', {res: result, errs: []});
         }
     });
 });
 
 router.post('/customers', (req, res)=> {
-    var searchBy = req.body.searchBy;
-    var word = req.body.word;
-    userModel.searchBy(searchBy, word, (result)=> {
+    userModel.searchBy(req.body.searchBy, req.body.word, (result)=> {
         if(!result){
             res.render('admin/customers', {res: [], errs: [{message: "No results found!"}]});
         }
         else {
-            console.log(result);
             res.render('admin/customers', {res: result, errs: []})
         }
     });
@@ -224,13 +217,11 @@ router.post('/customers/add', (req, res)=> {
                     res.send("Invalid");
                 }
                 else {
-                    console.log(result);
                     res.render('admin/customers-add', {errs: [], success: [{message: "Customer added successfully!"}], data: []});
                 }
             });
         }
         else {
-            console.log(fields);
             res.render('admin/customers-add', {errs: errors, success: [], data});
         }
     });
@@ -261,21 +252,18 @@ router.post('/books/add', (req, res)=> {
                     res.send("Invalid");
                 }
                 else {
-                    console.log(result);
                     res.render('admin/books-add', {errs: [], success: [{message: "Book added successfully!"}], data: []});
                 }
             });
         }
         else {
-            console.log(fields);
             res.render('admin/books-add', {errs: errors, success: [], data});
         }
     });
 });
 
 router.get('/books/edit/:id', (req, res)=> {
-    var book = req.params.id;
-    bookModel.getBook(book, (result)=> {
+    bookModel.getBook(req.params.id, (result)=> {
         if(result.length == 0){
             res.send("Invalid");
         }
@@ -307,22 +295,18 @@ router.post('/books/edit/:id', (req, res)=> {
                     res.send("Invalid");
                 }
                 else {
-                    console.log(result);
                     res.render('admin/books-edit', {res: result, errs:[], success: [{message: "Book updated successfully!"}]});
                 }
             });
         }
         else {
-            console.log(fields);
             res.render('admin/books-edit', {res: data, errs: errors, success: []})
         }
     });
-
 });
 
 router.get('/customers/edit/:id', (req, res)=> {
-    var customer = req.params.id;
-    userModel.getUser(customer, (result)=> {
+    userModel.getUser(req.params.id, (result)=> {
         if(result.length == 0){
             res.send("Invalid");
         }
@@ -353,79 +337,66 @@ router.post('/customers/edit/:id', (req, res)=> {
                     res.send("Invalid");
                 }
                 else {
-                    console.log(result);
                     res.render('admin/customers-edit', {res: result, errs:[], success: [{message: "Customer updated successfully!"}]});
                 }
             });
         }
         else {
-            console.log(fields);
             res.render('admin/customers-edit', {res: data, errs: errors, success: []});
         }
     });
-
 });
 
 router.get('/customers/profile/:id', (req, res)=> {
-    var id = req.params.id;
-    var customer = userModel.getUser(id, (result)=> {
+    userModel.getUser(req.params.id, (result)=> {
         if(result.length == 0){
             res.send("Invalid");
         }
         else {
-            console.log(result);
             res.render('admin/customers-profile', {res: result});
         }
     });
 });
 
 router.get('/customers/delete/:id', (req, res)=> {
-    var id = req.params.id;
-    var customer = userModel.getUser(id, (result)=> {
+    userModel.getUser(req.params.id, (result)=> {
         if(result.length == 0){
             res.send("Invalid");
         }
         else {
-            console.log(result);
             res.render('admin/customers-delete', {res: result});
         }
     });
 });
 
 router.post('/customers/delete/:id', (req, res)=> {
-    var id = req.body.user_id;
-    var customer = userModel.deleteUser(id, (result)=> {
+    userModel.deleteUser(req.body.user_id, (result)=> {
         if(result.length == 0){
             res.send("Invalid");
         }
         else {
-            console.log(result);
             res.redirect('/admin/customers');
         }
     });
 });
 
 router.get('/books/delete/:id', (req, res)=> {
-    var id = req.params.id;
-    var book = bookModel.getBook(id, (result)=> {
+    bookModel.getBook(req.params.id, (result)=> {
         if(result.length == 0){
             res.send("Invalid");
         }
         else {
-            console.log(result);
             res.render('admin/books-delete', {res: result});
         }
     });
 });
 
 router.post('/books/delete/:id', (req, res)=> {
-    var id = req.body.book_id;
-    var book = bookModel.deleteBook(id, (result)=> {
+    bookModel.deleteBook(req.body.book_id, (result)=> {
         if(result.length == 0){
             res.send("Invalid");
         }
         else {
-            console.log(result);
             res.redirect('/admin/books');
         }
     });
@@ -437,7 +408,6 @@ router.get('/books/:id/issue', (req, res)=> {
             res.send("Invalid");
         }
         else {
-            console.log(result);
             res.render('admin/books-issue', {res: result, errs: [], success: []});
         }
     });
@@ -452,22 +422,15 @@ router.post('/books/:id/issue', (req, res)=> {
             res.send("Invalid");
         }
         else {
-            console.log(books.length);
             if(books.length <= 2){
                 bookModel.setIssueDate(book_id, customer_id, (result)=> {
-                    if(!result){
-                        res.send("Invalid");
-                    }
-                    else {
-                        console.log(result);
-                    }
+                    // Logic handled in callback chain
                 });
                 bookModel.issueBook(book_id, customer_id, (result)=> {
                     if(!result){
                         res.send("Invalid");
                     }
                     else {
-                        console.log(result);
                         res.redirect('/admin/books');
                     }
                 });
@@ -478,7 +441,6 @@ router.post('/books/:id/issue', (req, res)=> {
                         res.send("Invalid");
                     }
                     else {
-                        console.log(result);
                         res.render('admin/books-issue', {res: result, errs: [{message: "This customer has already issued 3 books, please unissue one first!"}], success: []});
                     }
                 });
@@ -493,20 +455,17 @@ router.get('/books/issued', (req, res)=> {
             res.send("Invalid!");
         }
         else {
-            console.log(result);
             res.render('admin/issued-books', {res: result});
         }
     });
 });
 
 router.post('/books/issued', (req, res)=> {
-    var book_id = req.body.book_id;
-    bookModel.unissueBook(book_id, (result)=> {
+    bookModel.unissueBook(req.body.book_id, (result)=> {
         if(!result){
             res.send("Invalid");
         }
         else {
-            console.log(result);
             res.redirect('/admin/books');
         }
     });
@@ -518,26 +477,20 @@ router.get('/books/requested', (req, res)=> {
             res.send("Invalid");
         }
         else {
-            console.log(result);
             res.render('admin/books-requested', {res: result, errs: []});
         }
     });
 });
 
 router.post('/books/requested', (req, res)=> {
-    var searchBy = req.body.searchBy;
-    var word = req.body.word;
-    bookModel.bookRequestSearch(searchBy, word, (result)=> {
+    bookModel.bookRequestSearch(req.body.searchBy, req.body.word, (result)=> {
         if(!result){
             res.render('admin/books-requested', {res: [], errs: [{message: "No results found!"}]});
         }
         else {
-            console.log(result);
             res.render('admin/books-requested', {res: result, errs: []})
         }
     });
 });
-
-
 
 module.exports = router;
