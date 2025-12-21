@@ -41,42 +41,49 @@ router.get('/profile/edit', (req, res)=> {
     });
 });
 
-// HERO FIX: Single route with S3 upload middleware
-router.post('/profile/edit', upload.single('profile_pic'), (req, res)=> {
-    var rules = validationRules.users.update;
-    var validator = new asyncValidator(rules);
-    
-    // Logic: Use new S3 URL if uploaded, otherwise keep the old one from hidden field
+
+router.post('/profile/edit', upload.single('profile_pic'), (req, res) => {
+    // 1. Extract the S3 URL or fall back to the old one
     var profilePicUrl = req.file ? req.file.location : req.body.old_profile_pic;
 
     var data = {
-      user_id: req.body.user_id,
-      name: req.body.name,
-      email: req.body.email,
-      phone: req.body.phone,
-      address: req.body.address,
-      gender: req.body.gender,
-      profile_pic: profilePicUrl 
+        user_id: req.body.user_id,
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        address: req.body.address,
+        gender: req.body.gender,
+        profile_pic: profilePicUrl // 👈 This must be the full S3 URL
     };
 
-    validator.validate(data, (errors, fields)=> {
-        if(!errors){
-            userModel.updateUser(data, (result)=> {
-                if(!result){
+    // --- 🕵️‍♂️ DEBUG LOGS ---
+    console.log("--- S3 UPLOAD DEBUG ---");
+    console.log("Full S3 URL (req.file.location):", req.file ? req.file.location : "⚠️ FILE MISSING");
+    console.log("Saving to DB:", data.profile_pic);
+
+    validator.validate(data, (errors, fields) => {
+        if (!errors) {
+            userModel.updateUser(data, (result) => {
+                if (!result) {
+                    console.log("❌ Database Update Failed");
                     res.send('invalid');
-                }
-                else {
+                } else {
+                    console.log("✅ Database Update Success!");
+                    
+                    // 2. 🔥 SYNC THE SESSION
+                    // This ensures the frontend sees the new URL immediately
+                    req.session.res = data; 
+                    
                     res.redirect('/customer/profile');
                 }
             });
-        }
-        else {
+        } else {
+            console.log("⚠️ Validation Errors:", errors);
             // Pass data back so form remains sticky
-            res.render('customer/profile', {errs: errors, res: data});
+            res.render('customer/profile', { errs: errors, res: data });
         }
     });
 });
-
 router.get('/changepass', (req, res)=> {
     userModel.getUser(req.session.customer, (result)=> {
         if(!result){

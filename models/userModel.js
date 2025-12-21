@@ -24,8 +24,19 @@ var getUser = (id, callback) => {
 };
 
 var updateUser = (user, callback) => {
-    var sql = "UPDATE users SET name = ?, email = ?, phone = ?, address = ?, gender = ? WHERE user_id = ?";
-    db.executeQuery(sql, [user.name, user.email, user.phone, user.address, user.gender, user.user_id], function(result) {
+    // 1. Added profile_pic = ? to the SQL string
+    var sql = "UPDATE users SET name = ?, email = ?, phone = ?, address = ?, gender = ?, profile_pic = ? WHERE user_id = ?";
+    
+    // 2. Added user.profile_pic to the array
+    db.executeQuery(sql, [
+        user.name, 
+        user.email, 
+        user.phone, 
+        user.address, 
+        user.gender, 
+        user.profile_pic, // 👈 This is the S3 URL from req.file.location
+        user.user_id
+    ], function(result) {
         callback(result);
     });
 };
