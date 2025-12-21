@@ -60,6 +60,7 @@ router.post('/profile/edit', upload.single('profile_pic'), (req, res) => {
     console.log("--- S3 UPLOAD DEBUG ---");
     console.log("Full S3 URL (req.file.location):", req.file ? req.file.location : "⚠️ FILE MISSING");
     console.log("Saving to DB:", data.profile_pic);
+    const validator = require('node-input-validator'); // Or whatever validation lib you are using
 
     validator.validate(data, (errors, fields) => {
         if (!errors) {
