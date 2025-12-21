@@ -42,49 +42,44 @@ router.get('/profile/edit', (req, res)=> {
 });
 
 router.post('/profile/edit', upload.single('profile_pic'), (req, res) => {
-    // 1. Extract the S3 URL or fall back to the old one
+    // 1. Identify the rules for customer update from your rules file
+    var rules = validationRules.users.update; 
+    var validator = new asyncValidator(rules);
+    
+    // 2. Extract the S3 URL from Multer or keep the old one
     var profilePicUrl = req.file ? req.file.location : req.body.old_profile_pic;
 
     var data = {
-        user_id: req.body.user_id,
-        name: req.body.name,
-        email: req.body.email,
-        phone: req.body.phone,
-        address: req.body.address,
-        gender: req.body.gender,
-        profile_pic: profilePicUrl 
+      user_id: req.body.user_id,
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
+      address: req.body.address,
+      gender: req.body.gender,
+      profile_pic: profilePicUrl // 👈 Handing off the cloud link to the DB
     };
-
-    // --- 🕵️‍♂️ DEBUG LOGS ---
-    console.log("--- S3 UPLOAD DEBUG ---");
-    console.log("Saving to DB URL:", data.profile_pic);
-
-    // Use the validator you already imported at the top of the file!
-    var rules = validationRules.users.edit; // Ensure this exists in your rules file
-    var validator = new asyncValidator(rules);
 
     validator.validate(data, (errors, fields) => {
         if (!errors) {
             userModel.updateUser(data, (result) => {
                 if (!result) {
-                    console.log("❌ Database Update Failed");
                     res.send('invalid');
                 } else {
-                    console.log("✅ Database Update Success!");
-                    
-                    // 🔥 SYNC THE SESSION so the UI updates immediately
+                    // 3. 🔥 UPDATE THE SESSION: This is why your images were ghosting!
+                    // We must update the session so the profile page displays the new data
                     req.session.res = data; 
                     
+                    // 4. Redirect to customer profile view
                     res.redirect('/customer/profile');
                 }
             });
         } else {
-            console.log("⚠️ Validation Errors:", errors);
-            res.render('customer/profile-edit', { errs: errors, res: data });
+            // 5. If validation fails, stay on the profile with error messages
+            console.log("Validation Errors:", errors);
+            res.render('customer/profile', {errs: errors, res: data});
         }
     });
-});
-router.get('/changepass', (req, res)=> {
+});router.get('/changepass', (req, res)=> {
     userModel.getUser(req.session.customer, (result)=> {
         if(!result){
             res.send("invalid!");
