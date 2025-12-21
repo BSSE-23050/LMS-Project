@@ -41,7 +41,6 @@ router.get('/profile/edit', (req, res)=> {
     });
 });
 
-
 router.post('/profile/edit', upload.single('profile_pic'), (req, res) => {
     // 1. Extract the S3 URL or fall back to the old one
     var profilePicUrl = req.file ? req.file.location : req.body.old_profile_pic;
@@ -53,14 +52,16 @@ router.post('/profile/edit', upload.single('profile_pic'), (req, res) => {
         phone: req.body.phone,
         address: req.body.address,
         gender: req.body.gender,
-        profile_pic: profilePicUrl // 👈 This must be the full S3 URL
+        profile_pic: profilePicUrl 
     };
 
     // --- 🕵️‍♂️ DEBUG LOGS ---
     console.log("--- S3 UPLOAD DEBUG ---");
-    console.log("Full S3 URL (req.file.location):", req.file ? req.file.location : "⚠️ FILE MISSING");
-    console.log("Saving to DB:", data.profile_pic);
-    const validator = require('node-input-validator'); // Or whatever validation lib you are using
+    console.log("Saving to DB URL:", data.profile_pic);
+
+    // Use the validator you already imported at the top of the file!
+    var rules = validationRules.users.edit; // Ensure this exists in your rules file
+    var validator = new asyncValidator(rules);
 
     validator.validate(data, (errors, fields) => {
         if (!errors) {
@@ -71,8 +72,7 @@ router.post('/profile/edit', upload.single('profile_pic'), (req, res) => {
                 } else {
                     console.log("✅ Database Update Success!");
                     
-                    // 2. 🔥 SYNC THE SESSION
-                    // This ensures the frontend sees the new URL immediately
+                    // 🔥 SYNC THE SESSION so the UI updates immediately
                     req.session.res = data; 
                     
                     res.redirect('/customer/profile');
@@ -80,8 +80,7 @@ router.post('/profile/edit', upload.single('profile_pic'), (req, res) => {
             });
         } else {
             console.log("⚠️ Validation Errors:", errors);
-            // Pass data back so form remains sticky
-            res.render('customer/profile', { errs: errors, res: data });
+            res.render('customer/profile-edit', { errs: errors, res: data });
         }
     });
 });
